@@ -1,0 +1,27 @@
+ALGORITMO DE FUNCIONAMIENTO DE LA INTERPOLACIÓN DE LAGRANGE
+
+Inicio
+
+1. Definir función lagrange_interp con entrada: x_points, y_points, x, valor_real
+2. Calcular el grado del polinomio n = longitud(x_points) - 1
+3. Inicializar y_interp = 0  (variable para almacenar el resultado de la interpolación)
+
+4. Para i desde 0 hasta n hacer:
+    a. Inicializar L = 1 (almacenará el valor del polinomio base L_i)
+    
+    b. Para j desde 0 hasta n hacer:
+        i. Si j ≠ i:
+            - Actualizar L = L * (x - x_points[j+1]) / (x_points[i+1] - x_points[j+1])
+            - Esto construye el término L_i(x) usando el producto excluyendo i = j
+    
+    c. Acumular en y_interp el término: y_interp = y_interp + y_points[i+1] * L
+       - Esto suma el producto de y_i por L_i(x) al total
+
+5. Fin del ciclo for
+
+6. Calcular el error relativo porcentual: 
+   error = |(y_interp - valor_real) / valor_real| * 100
+
+7. Retornar y_interp y error
+
+Fin
